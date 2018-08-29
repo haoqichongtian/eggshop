@@ -1,4 +1,7 @@
 const moment = require('moment');
+const md5 = require('md5');
+
+
 exports.relativeTime = time => moment(new Date(time)).fromNow();
 
 exports.sprintf = function(){
@@ -17,6 +20,19 @@ exports.request = async function(api, opts) {
   }, opts);
 
   const result = await this.ctx.curl(api, options);
-  console.log(result);
   return result.data;
+}
+
+exports.getRandChar = function(len){
+  let str = '';
+  let rangeStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
+  let max = rangeStr.length-1;
+  for(var i = 0;i<max;i++){
+    str += rangeStr[Math.random(0,max)];
+  }
+  return str;
+}
+
+exports.md5serect = function(str){
+  return md5(str);
 }

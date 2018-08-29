@@ -4,7 +4,8 @@ class TokenController extends Controller{
   async getToken(){
     const ctx = this.ctx;
     const code = ctx.request.body.code;
-    ctx.service.token.get(code);
+    let token = await ctx.service.token.get(code);
+    ctx.body=token;
   }
 }
 

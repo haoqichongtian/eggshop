@@ -44,7 +44,9 @@ module.exports = appInfo => {
     js_code:'033t0IIV01rLOV1QOKHV0L7NIV0t0II7',
     grant_type:'',
     login_url:"https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code",
-    access_token_url:"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s"
+    access_token_url:"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",
+    token_expire_in:7200,
+    salt:'kjvoan173HKFK'
   }
   
   exports.security = {
@@ -84,5 +86,9 @@ module.exports = appInfo => {
     password: '',
   };
 
+  config.scope = {
+    User:16,
+    Super:32
+  };
   return config;
 };
