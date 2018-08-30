@@ -86,6 +86,16 @@ module.exports = appInfo => {
     password: '',
   };
 
+  config.redis = { 
+    client: { 
+    port: 6379, // Redis port 
+    host: '127.0.0.1', // Redis host 
+    password: '', 
+    db: 0, 
+    }, 
+  }
+
+  //权限
   config.scope = {
     User:16,
     Super:32

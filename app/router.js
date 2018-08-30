@@ -6,7 +6,7 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
-  router.get('/banner', controller.home.banner);
+  router.get('/banner/:id', controller.home.banner);
 
   router.get('/theme', controller.theme.getSimpleList);
   router.get('/theme/:id', controller.theme.getComplexOne);
@@ -19,4 +19,12 @@ module.exports = app => {
 
 
   router.post('/token/user',controller.token.getToken);
+  router.post('/token/verify',controller.token.verifyToken);
+  router.post('/token/app',controller.token.getAppToken);
+
+  router.post('/address',controller.address.createOrUpdateAddress);
+  router.post('/address/getAddress',controller.address.getAddress);
+
+  router.post('/order',controller.order.placeOrder);
+
 };

@@ -41,7 +41,9 @@ module.exports = app => {
   });
 
   Model.associate = function() {
-
+    app.model.User.hasOne(app.model.UserAddress,{
+      foreignKey:'user_id',targetKey:'id',as:'address'
+    })
   }
 
   return Model;

@@ -27,8 +27,8 @@ exports.getRandChar = function(len){
   let str = '';
   let rangeStr = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz';
   let max = rangeStr.length-1;
-  for(var i = 0;i<max;i++){
-    str += rangeStr[Math.random(0,max)];
+  for(var i = 0;i<len;i++){
+    str += rangeStr[Math.floor(Math.random(0,max)*10)];
   }
   return str;
 }

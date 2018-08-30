@@ -16,7 +16,7 @@ class CategoryService extends Service{
           model:this.app.model.Product
         }
       })
-    }{
+    }else{
       category = await this.app.model.Category.findAll({
       })
     }

@@ -3,14 +3,14 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
-  const Model = app.model.define('theme', {
+  const Model = app.model.define('token', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    token: {
+    value: {
       type: DataTypes.STRING(255),
       allowNull: false
     },
@@ -20,7 +20,7 @@ module.exports = app => {
     }
   }, {
     timestamps: false, 
-    tableName: 'theme'
+    tableName: 'token'
   });
 
   Model.associate = function() {
