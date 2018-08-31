@@ -12,7 +12,7 @@ class TokenController extends Controller{
     const ctx = this.ctx;
     const key = ctx.request.body.token;
     let exist = await ctx.service.token.verifyToken(key);
-    ctx.body=JSON.parse(exist);
+    ctx.body=exist;
   }
 
   async getAppToken(){

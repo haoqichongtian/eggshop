@@ -6,25 +6,21 @@ class AddressService extends Service{
   }
 
   async getAddressByUid(uid){
-    let user = await this.app.model.User.find({
+    let address = await this.app.model.UserAddress.find({
       where:{
-        id:uid
-      },
-      include:{
-        model:this.app.model.UserAddress,
-        as:'address'
+        user_id:uid
       }
     })
-    return {user}
+    return address
   }
 
-  async getUserByToken(token){
+  async getAddressByToken(token){
     let ctx = this.ctx;
     let value = await ctx.service.token.verifyToken(token);
-    let uid = JSON.parse(value).uid;
+    let uid = value.uid;
     //通过uid查找到用户的地址
-    let user = await ctx.service.address.getAddressByUid(uid);
-    return user;
+    let address = await this.getAddressByUid(uid);
+    return address;
   }
 }
 

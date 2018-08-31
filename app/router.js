@@ -26,5 +26,9 @@ module.exports = app => {
   router.post('/address/getAddress',controller.address.getAddress);
 
   router.post('/order',controller.order.placeOrder);
+  router.post('/order/:id',controller.order.getDetail);
+  router.post('/order/by_user',controller.order.getSummaryByUser);
+  router.get('/order/paginate',controller.order.getSummary);
 
+  router.post('/pay/pre_order',controller.pay.getPreOrder);
 };

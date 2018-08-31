@@ -16,8 +16,9 @@ class HomeController extends Controller {
 
   async banner() {
     const ctx = this.ctx;
-    // const bannerId = ctx.request.query.id; 适用于？id=1
-    const bannerId = ctx.params.id; //适用于/:id
+    // const bannerId = ctx.query.id; 适用于？id=1
+    // const { id } = ctx.request.body; 适用于post body传递数据
+    const bannerId = ctx.params.id; //适用于/:id 
     console.log(bannerId);
     const banner = await ctx.service.home.getBanner(bannerId);
     ctx.body = banner;

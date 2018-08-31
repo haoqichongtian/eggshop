@@ -6,12 +6,13 @@ class AddressController extends Controller{
    */
   async createOrUpdateAddress(){
     let ctx = this.ctx;
-    let user= await this.getUserByToken()
+    let userAddress= await this.getAddressByToken()
     const { name, mobile,province,city,country,detail,token } = ctx.request.body;
     //如果查找到用户的地址则更新，没有就创建用户地址
-    let addressDate;
-    if(user.user.address!=null){
-      let address = await this.app.model.UserAddress.findById(user.user.address.id);
+    console.log(userAddress);
+    let addressDate ;
+    if(userAddress!=null){
+      let address = await this.app.model.UserAddress.findById(userAddress.id);
       if (!address) {
         ctx.status = 404;
         return;
@@ -32,15 +33,15 @@ class AddressController extends Controller{
   /**
    * 根据传递的token查找用户地址
    */
-  async getUserByToken(){
+  async getAddressByToken(){
     let ctx = this.ctx;
     let token = ctx.request.body.token;
-    return await ctx.service.address.getUserByToken(token);
+    return await ctx.service.address.getAddressByToken(token);
   }
 
   async getAddress(){
-     let user= await this.getUserByToken();
-     this.ctx.body =user.user.address;
+     let address= await this.getAddressByToken();
+     this.ctx.body =address;
   }
 }
 

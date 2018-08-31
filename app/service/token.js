@@ -130,7 +130,7 @@ class TokenService extends Service{
         key
       }
     })
-    return exist.value;
+    return JSON.parse(exist.value);
   }
 
 }
