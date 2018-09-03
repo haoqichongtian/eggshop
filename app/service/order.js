@@ -15,8 +15,8 @@ class OrderService extends Service{
     this.orderProducts = orderProducts;
     //[['productId':2,'count':3],['productId':3,'count':3]]
     //[{'productId':2,'count':3},{'productId':3,'count':3}]
-    let actualProducts = await this.getProductByOrderProducts(orderProducts);
-    let status = this.compareOrderAndActual(orderProducts,actualProducts);
+    
+    let status =await this.compareOrderAndActual(orderProducts);
     if(!status.pass){
       status.order_id = -1;
       return status;
@@ -47,7 +47,8 @@ class OrderService extends Service{
    * @param {订单的数组} orderProducts 
    * @param {实际商品的数组} actualProducts 
    */
-  compareOrderAndActual(orderProducts,actualProducts){
+  async compareOrderAndActual(orderProducts){
+    let actualProducts = await this.getProductByOrderProducts(orderProducts);
     let status = {
       'pass':true,
       'orderTotalPrice':0,
@@ -147,9 +148,10 @@ class OrderService extends Service{
       snap_name = snap.name,
       total_count = snap.totalCount,
       snap_items = JSON.stringify(snap.pStatus),
-      snap_address = JSON.stringify(snap.snapAddress);
+      snap_address = JSON.stringify(snap.snapAddress),
+      snap_img = snap.img;
 
-      let order = await this.app.model.Order.create({user_id,order_no,total_price,snap_name,total_count,snap_items,snap_address});
+      let order = await this.app.model.Order.create({user_id,order_no,total_price,snap_name,total_count,snap_items,snap_address,snap_img});
       this.orderProducts.forEach(v=>{
         v.order_id = order.id;
       })

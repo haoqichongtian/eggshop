@@ -7,7 +7,20 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1535102262165_1992';
   // console.log(appInfo);
   // add your config here
-  config.middleware = [];
+  // add middleware robot
+  exports.middleware = [
+    'robot','gzip','bizerror'
+  ];
+  // robot's configurations
+  exports.robot = {
+    ua: [
+      /Baiduspider/i,
+    ]
+  };
+
+  config.gzip ={
+    threshold: 1024, // 小于 1k 的响应体不压缩
+  }
 
   exports.logger = {
     dir: `${appInfo.root}/logs/${appInfo.name}`,
@@ -20,17 +33,7 @@ module.exports = appInfo => {
     },
   };
 
-  // config/config.default.js
-  // add middleware robot
-  exports.middleware = [
-    'robot'
-  ];
-  // robot's configurations
-  exports.robot = {
-    ua: [
-      /Baiduspider/i,
-    ]
-  };
+  
 
   exports.home = {
     pageSize: 5,
@@ -100,5 +103,27 @@ module.exports = appInfo => {
     User:16,
     Super:32
   };
+  // config.onerror= {
+  //   all(err, ctx) {
+  //     // 在此处定义针对所有响应类型的错误处理方法
+  //     // 注意，定义了 config.all 之后，其他错误处理方法不会再生效
+  //     ctx.body = 'error';
+  //     ctx.status = 500;
+  //   },
+  //   html(err, ctx) {
+  //     // html hander
+  //     ctx.body = '<h3>error</h3>';
+  //     ctx.status = 500;
+  //   },
+  //   json(err, ctx) {
+  //     // json hander
+  //     ctx.body = { message: 'error' };
+  //     ctx.status = 500;
+  //   },
+  //   jsonp(err, ctx) {
+  //     // 一般来说，不需要特殊针对 jsonp 进行错误定义，jsonp 的错误处理会自动调用 json 错误处理，并包装成 jsonp 的响应格式
+  //   },
+  // }
+
   return config;
 };

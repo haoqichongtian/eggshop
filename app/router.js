@@ -31,4 +31,6 @@ module.exports = app => {
   router.get('/order/paginate',controller.order.getSummary);
 
   router.post('/pay/pre_order',controller.pay.getPreOrder);
+
+  
 };
