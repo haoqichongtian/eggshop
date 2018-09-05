@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = appInfo => {
- 
+  const config = exports = {};
   //mysql
   exports.mysql = {
     // 单数据库信息配置
