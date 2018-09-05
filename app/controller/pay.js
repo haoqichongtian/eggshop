@@ -6,7 +6,7 @@ class PayController extends Controller{
     let ctx = this.ctx;
     let {token,id} =  ctx.request.body;
     const createRule = {
-      id: {type: 'string',required: true,allowEmpty: false,max:10,min:4}
+      id: {type: 'string',required: true,allowEmpty: false,max:20,min:4}
     };    
   //   try {
   //   this.ctx.validate({
@@ -17,10 +17,12 @@ class PayController extends Controller{
   //   return;
   // }
     const errors = Check.validate(createRule, ctx.request.body);     
-    console.log(errors); 
+    if(!errors){
+      let order = await ctx.service.pay.pay(id);    
+      ctx.body = order;
+    }
 
-    // let order = await ctx.service.pay.pay(id);    
-    // ctx.body = errors;
+    
     
   }
 }

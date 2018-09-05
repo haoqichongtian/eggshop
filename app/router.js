@@ -14,9 +14,9 @@ module.exports = app => {
   router.get('/product/recent/:count?', controller.product.getRecent);
   router.get('/product/property/:id',controller.product.getProperty);
 
-  router.get('/category/:id',controller.category.getOneCategory);
+  
   router.get('/category/all',controller.category.getCategory);
-
+  router.get('/category/:id',controller.category.getOneCategory);
 
   router.post('/token/user',controller.token.getToken);
   router.post('/token/verify',controller.token.verifyToken);

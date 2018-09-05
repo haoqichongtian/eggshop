@@ -26,7 +26,8 @@ class PayService extends Service{
       oProducts[i].count=v.count;
     })
     //库存检查
-    let status = this.ctx.service.order.compareOrderAndActual(oProducts);
+    let status =await this.ctx.service.order.compareOrderAndActual(oProducts);
+    
     if(!status.pass){
       return {
         code:10000

@@ -17,10 +17,10 @@ exports.sequelize = {
   package: 'egg-sequelize',
 };
 
-exports.redis = { 
-  enable: true, 
-  package: 'egg-redis', 
-}; 
+// exports.redis = { 
+//   enable: true, 
+//   package: 'egg-redis', 
+// }; 
 
 exports.validate = {
   enable: true,
