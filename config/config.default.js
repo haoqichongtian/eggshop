@@ -1,5 +1,5 @@
 'use strict';
-
+console.log('config')
 module.exports = appInfo => {
   const config = exports = {};
 
